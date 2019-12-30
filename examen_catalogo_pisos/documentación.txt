@@ -1,0 +1,76 @@
+Lee las notas:
+- Crea un proyecto con tu nombre y dos apellidos
+- Los métodos deben tener una linea que describa su acción (/**+enter lo facilita)
+- No olvides cerrar los flujos y conexiones que abras
+- Lanza o captura las excepciones según creas conveniente. 
+- Los nombres de los archivos y las constates debes definirlas en la interface “Constantes”.
+
+1. 123. 1000, alquiler, calle 1, 4, A
+2. 60. 20000, venta, Calle 21, 8, B
+3. 70, 600, alquiler, calle 31, 1, C
+4. 110, 800, alquiler, calle 41, 4, D
+5. 190. 400000, venta, calle 51, 3 A
+
+Una agencia inmobiliaria necesita gestionar su catalogo de viviendas en venta o alquiler. Para ello tenemos los siguientes tipos:
+
+Vivienda
+    • Sus atributos son: Orden (entero), superficie (real mayor que cero), precio (real mayor que cero), operación (con los valores ALQUILER y VENTA) y dirección (cadena no nula).
+    • Todos los atributos son observables y solo el precio es modificable.
+    • Dos viviendas serán iguales si su dirección coincide.
+
+Piso
+
+    • Es una Vivienda
+    • Tiene los atributos: planta (entero) y puerta (carácter)
+    • los atributos son observables y no modificables.
+    • Dos pisos se ordenan de forma natural por dirección, planta y puerta, en ese orden.
+    • Dos pisos serán iguales si su dirección, planta y puerta coinciden.
+
+Catalogo
+
+    • Un atributo para almacenar pisos: elige una estructuras de datos de las explicadas en clase.
+
+Problema 0
+
+Crea un archivo de texto “pisos.txt” (con gEdit o con Eclipse) que contenga información sobre pisos: superficie, precio, operación, dirección, planta y puerta; el fichero puede contener la misma información que el mostrado arriba, o como quieras.
+
+Problema 1 Estructura del esqueleto de la aplicación.
+
+    1. Escribe todas las interfaces y clases necesarias para declarar los tipos anteriores.
+    2. Codifica todos los constructores que necesites para Vivienda y Catalogo
+    3. Codifica para el tipo Piso dos constructores:
+        1. Uno recibe un argumento por cada propiedad.
+        2. Otro recibe un argumento del tipo cadena en la que los valores de cada propiedad están separados por una coma.
+
+    4. Valida las propiedades y gestiona (arroja o captura) adecuadamente algunas excepciones.
+    5. Codifica un método que dado un valor real “porcentaje” rebaja el precio de una vivienda en ese porcentaje.
+
+Problema 2 Para el tipo Catalogo, gestión de estructuras de datos y ficheros diversos.
+
+    1. Codifica un método para cargar el fichero de texto anterior en un catálogo: ya sabes, lee cada linea del fichero de texto, crea un objeto de Piso y añádelo bien al catálogo.
+    2. Codifica un método para serializar los objetos del catalogo en el archivo “pisos.ser”
+    3. Dada una planta “p” graba un archivo de textos en los pisos que están por debajo de ella.
+    4. Método que recibe un String valor con “Alquiler” o “Venta” y devuelve el número de pisos de esa operación.
+    5. Método que dado un precio “p” y una superficie “s” devuelve un Catalogo con los pisos con superficie mayor que “s” y precio menor que “p”.
+    6. Método para ordenar el catalogo por superficie, orden alternativo.
+    7. Método para que dada una superficie “s” y un porcentaje “p” rebaja el precio de los pisos con una superficie mayor que “s” un porcentaje “p”.
+
+Problema 3 Gestión básica de base de datos. Crea una clase DAO para todos los métodos.
+
+    1. Método para conectar a la base de datos “AGENCIA” 
+    2. Usa phpMyAdmin u otro admin para crear la base de datos “AGENCIA” y la tabla “PISOS”: el atributo número de orden es un entero AUTO_INCREMENT y todos los atributos son no nulos. Pon como PK el campo que quieras. Después, si te sobra tiempo, codifica uno o varios métodos para automatizar las dos acciones anteriores.
+    3. Codifica un método para insertar (create) un piso en la tabla.
+    4. Codifica un método que lee el fichero serializado de pisos y los almacena en la tabla usando sentencias precompiladas e invocando al método anterior para hacer una inserción.
+    5. Codifica un método que recibe un número de orden de piso y lo elimina (delete) usando ResultSet bidireccionales y actualizables o sentencias precompiladas.
+    6. Escribe una consulta (read) que retorna una Collections con todos los pisos de la tabla ordenados por el orden alternativo, por superficie.
+    7. Método que retorna el número de pisos que hay en la agencia con un precio inferior al pasado por parámetro.
+
+Problema 4 
+
+Crea la clase “Inicio” en el paquete denominado gestión y su método principal codifica las siguientes acciones:
+
+    • Crea los objetos que necesites.
+    • Crea la base de datos y las tablas.
+    • Llama a los métodos necesarios
+    • Haz las pruebas que necesites.
+    • ...
