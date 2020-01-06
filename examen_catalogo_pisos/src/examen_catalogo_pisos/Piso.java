@@ -1,5 +1,6 @@
 package examen_catalogo_pisos;
 
+import java.io.Serializable;
 import java.util.InputMismatchException;
 
 /*
@@ -13,9 +14,14 @@ import java.util.InputMismatchException;
  */
 
 public class Piso extends Vivienda {
-
+	private static final long serialVersionUID = 1L;
 	private Integer planta;
 	private Character puerta;
+
+	/*
+	 * 3. Codifica para el tipo Piso dos constructores: 1. Uno recibe un argumento
+	 * por cada propiedad.
+	 */
 
 	public Piso() {
 		super();
@@ -23,12 +29,23 @@ public class Piso extends Vivienda {
 		this.puerta = introducePuerta();
 	}
 
+	// 1. Uno recibe un argumento por cada propiedad.
 	public Piso(Integer orden, Double superficie, Double precio, String operacion, String direccion, Integer planta,
 			Character puerta) {
 		super(orden, superficie, precio, operacion, direccion);
 		this.planta = planta;
 		this.puerta = puerta;
 
+	}
+
+	// 2. Otro recibe un argumento del tipo cadena en la que los valores de cada
+	// propiedad est醤 separados por una coma.
+	public Piso(String infoVivienda) {
+		String[] listaVivienda = new String[7];
+		listaVivienda = infoVivienda.split(",");
+		new Piso(Integer.parseInt(listaVivienda[0]), Double.parseDouble(listaVivienda[1]),
+				Double.parseDouble(listaVivienda[2]), listaVivienda[3], listaVivienda[4],
+				Integer.parseInt(listaVivienda[5]), listaVivienda[6].charAt(0));
 	}
 
 	public Integer getPlanta() {
@@ -70,13 +87,20 @@ public class Piso extends Vivienda {
 
 		return puertaBuena;
 	}
+	
+	//Metodo comprobacion si son el mismo piso, si lo son devuelve true.
+	
+	public boolean sonElMismoPiso(Piso b) {
+		return this.sonLaMismaVivienda(b.getDireccion()) && this.getPlanta().equals(b.getPlanta())
+				&& this.getPuerta().equals(b.getPuerta());
+	}
 
 	@Override
 	public String toString() {
-		return String.format("%d. Superficie: %.2f, Precio: %.2f, Operaci贸n: %s, Direcci贸n: %s., Planta: %d, Puerta: %c.", this.getOrden(),
-				this.getSuperficie(), this.getPrecio(), this.getOperacion(), this.getDireccion(), this.planta, this.puerta);
+		return String.format(
+				"%d. Superficie: %.2f, Precio: %.2f, Operaci贸n: %s, Direcci贸n: %s., Planta: %d, Puerta: %c.",
+				this.getOrden(), this.getSuperficie(), this.getPrecio(), this.getOperacion(), this.getDireccion(),
+				this.planta, this.puerta);
 	}
-	
-	
 
 }

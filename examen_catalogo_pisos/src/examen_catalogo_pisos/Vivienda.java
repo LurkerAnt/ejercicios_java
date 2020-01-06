@@ -1,26 +1,28 @@
 
 package examen_catalogo_pisos;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  * 
  * @author dioni
  *
- *         Vivienda • Sus atributos son: Orden (entero), superficie (real mayor
- *         que cero), precio (real mayor que cero), operación (con los valores
- *         ALQUILER y VENTA) y dirección (cadena no nula). • Todos los atributos
- *         son observables y solo el precio es modificable. • Dos viviendas
- *         serán iguales si su dirección coincide.
+ *         Vivienda • Sus atributos son: Orden (entero), superficie (real
+ *         mayor que cero), precio (real mayor que cero), operación (con los
+ *         valores ALQUILER y VENTA) y dirección (cadena no nula). • Todos
+ *         los atributos son observables y solo el precio es modificable. •
+ *         Dos viviendas serán iguales si su dirección coincide.
  *
  */
-public class Vivienda implements MetodosUtiles {
+public class Vivienda implements MetodosUtiles, Serializable {
+	private static final long serialVersionUID = 1L;
 	private Integer orden = 0;
 	private Double superficie;
 	private Double precio;
 	private String operacion;
 	private String direccion;
-	Scanner teclado = new Scanner(System.in);
+	transient Scanner teclado = new Scanner(System.in);
 
 	public Vivienda() {
 		this.orden = orden + 1;
@@ -96,6 +98,12 @@ public class Vivienda implements MetodosUtiles {
 
 	public boolean sonLaMismaVivienda(String direccion2) {
 		return this.direccion.equals(direccion2);
+	}
+
+	// Metodo que rebaja el precio de una vivienda
+
+	public void rebajaPrecio(Integer porcentaje) {
+		this.setPrecio(this.getPrecio() - ((this.getPrecio() * porcentaje) / 100));
 	}
 
 	@Override
