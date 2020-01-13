@@ -15,8 +15,8 @@ import java.util.InputMismatchException;
 
 public class Piso extends Vivienda {
 	private static final long serialVersionUID = 1L;
-	private Integer planta;
-	private Character puerta;
+	private int planta;
+	private char puerta;
 
 	/*
 	 * 3. Codifica para el tipo Piso dos constructores: 1. Uno recibe un argumento
@@ -30,16 +30,16 @@ public class Piso extends Vivienda {
 	}
 
 	// 1. Uno recibe un argumento por cada propiedad.
-	public Piso(Integer orden, Double superficie, Double precio, String operacion, String direccion, Integer planta,
-			Character puerta) {
-		super(orden, superficie, precio, operacion, direccion);
-		this.planta = planta;
-		this.puerta = puerta;
+	public Piso(int i, double d, double e, String operacion, String direccion, int j,
+			char c) {
+		super(i, d, e, operacion, direccion);
+		this.planta = j;
+		this.puerta = c;
 
 	}
 
 	// 2. Otro recibe un argumento del tipo cadena en la que los valores de cada
-	// propiedad están separados por una coma.
+	// propiedad estï¿½n separados por una coma.
 	public Piso(String infoVivienda) {
 		String[] listaVivienda = new String[7];
 		listaVivienda = infoVivienda.split(",");
@@ -48,11 +48,11 @@ public class Piso extends Vivienda {
 				Integer.parseInt(listaVivienda[5]), listaVivienda[6].charAt(0));
 	}
 
-	public Integer getPlanta() {
+	public int getPlanta() {
 		return planta;
 	}
 
-	public Character getPuerta() {
+	public char getPuerta() {
 		return puerta;
 	}
 
@@ -70,9 +70,9 @@ public class Piso extends Vivienda {
 		return plantaBuena;
 	}
 
-	private Character introducePuerta() {
+	private char introducePuerta() {
 
-		Character puertaBuena;
+		char puertaBuena;
 
 		try {
 			System.out.println("Introduce la Puerta de la vivienda, si no tiene puerta ponga 0: \n");
